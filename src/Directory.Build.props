@@ -1,0 +1,8 @@
+﻿<Project>
+  <PropertyGroup>
+    <VersionPrefix>4.0.17</VersionPrefix>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="SourceLink.Create.CommandLine" Version="2.8.1" PrivateAssets="All" /> 
+  </ItemGroup>
+</Project>
