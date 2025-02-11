@@ -23,18 +23,22 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
     <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+    <NoWarn>1701;1702;1605</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
     <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+    <NoWarn>1701;1702;1605</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
     <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+    <NoWarn>1701;1702;1605</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
     <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+    <NoWarn>1701;1702;1605</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
