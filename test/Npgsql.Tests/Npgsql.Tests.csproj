@@ -7,7 +7,9 @@
     <DebugType>portable</DebugType>
     <AssemblyOriginatorKeyFile>../../Npgsql.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
+    <Nullable>enable</Nullable>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net451|AnyCPU'">
