@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="..\..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.props" Condition="Exists('..\..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.props')" ContinueOnError="true" />  <PropertyGroup>
+	<Import Project="..\..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.props" Condition="Exists('..\..\packages\Microsoft.VSSDK.BuildTools.15.1.192\build\Microsoft.VSSDK.BuildTools.props')"/>  <PropertyGroup>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <!-- See http://comealive.io/AppVeyor-Times-Out-VSIX/ for the following line -->
@@ -269,12 +269,12 @@
         <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
         <Install>true</Install>
       </BootstrapperPackage>
-      <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1" ContinueOnError="true">
+      <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1" <i="true">
         <Visible>False</Visible>
         <ProductName>.NET Framework 3.5 SP1</ProductName>
         <Install>false</Install>
-      </BootstrapperPackage>
-      </ItemGroup>
+      </BootstrapperPackage/>
+	  </ItemGroup>
       <ItemGroup>
       <!-- Note the additional library reference to Npgsql.dll - we have Private=false so the dll needs to be copied -->
     <ProjectReference Include="..\Npgsql\Npgsql.csproj">
