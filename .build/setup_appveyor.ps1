@@ -10,12 +10,15 @@ Write-Host Enabling PostgreSQL SSL...
 Add-Content 'C:\Program Files\PostgreSQL\10\data\postgresql.conf' "`nssl = true"
 Copy-Item .build\server.* "C:\Program Files\PostgreSQL\10\data"
 
+$POSTGIS_EXE='postgis-bundle-pg10x64-setup-2.5.1-1.exe'
+echo $POSTGIS_EXE
+
 Write-Host Enabling PostGIS...
-If (!(Test-Path $env:POSTGIS_EXE)) {
+If (!(Test-Path $POSTGIS_EXE)) {
   Write-Host Downloading PostGIS...
-  (New-Object Net.WebClient).DownloadFile("https://www.postgresql.org/ftp/postgis/pg10/v2.5.3/win64/$env:POSTGIS_EXE", "$env:POSTGIS_EXE")
+  (New-Object Net.WebClient).DownloadFile("https://ftp.postgresql.org/pub/postgis/pg10/v2.5.3/win64/postgis-bundle-pg10x64-setup-2.5.3-2.exe", "$POSTGIS_EXE")
 }
-iex ".\$env:POSTGIS_EXE /S /D='C:\Program Files\PostgreSQL\10'"
+iex ".\$POSTGIS_EXE /S /D='C:\Program Files\PostgreSQL\10'"
 
 ########################
 ## Set version variables
