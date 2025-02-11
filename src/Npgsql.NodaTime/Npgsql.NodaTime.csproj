@@ -22,6 +22,22 @@
     <Features>IOperation</Features>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+    <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <WarningsNotAsErrors>1605</WarningsNotAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NodaTime" Version="2.4.4" />
 <!-- Causes issues in Appveyor and Travis
