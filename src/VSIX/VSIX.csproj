@@ -269,11 +269,11 @@
         <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
         <Install>true</Install>
       </BootstrapperPackage>
-      <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1" <i="true">
+      <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1" i="true">
         <Visible>False</Visible>
         <ProductName>.NET Framework 3.5 SP1</ProductName>
         <Install>false</Install>
-      </BootstrapperPackage/>
+      </BootstrapperPackage>
 	  </ItemGroup>
       <ItemGroup>
       <!-- Note the additional library reference to Npgsql.dll - we have Private=false so the dll needs to be copied -->
