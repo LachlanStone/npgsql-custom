@@ -20,6 +20,7 @@
 // ON AN "AS IS" BASIS, AND THE NPGSQL DEVELOPMENT TEAM HAS NO OBLIGATIONS
 // TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -53,7 +54,7 @@ namespace Npgsql.Tests
         public static void IgnoreExceptOnBuildServer(string message, params object[] args)
             => IgnoreExceptOnBuildServer(string.Format(message, args));
 
-        public static void MinimumPgVersion(NpgsqlConnection conn, string minVersion, string? ignoreText =null)
+        public static void MinimumPgVersion(NpgsqlConnection conn, string minVersion, string ignoreText=null)
         {
             var min = new Version(minVersion);
             if (conn.PostgreSqlVersion < min)
@@ -121,7 +122,7 @@ namespace Npgsql.Tests
 
     public static class NpgsqlConnectionExtensions
     {
-        public static int ExecuteNonQuery(this NpgsqlConnection conn, string sql, NpgsqlTransaction? tx = null)
+        public static int ExecuteNonQuery(this NpgsqlConnection conn, string sql, NpgsqlTransaction tx = null)
         {
             var cmd = tx == null ? new NpgsqlCommand(sql, conn) : new NpgsqlCommand(sql, conn, tx);
             using (cmd)
@@ -129,14 +130,14 @@ namespace Npgsql.Tests
         }
 
         [CanBeNull]
-        public static object ExecuteScalar(this NpgsqlConnection conn, string sql, NpgsqlTransaction? tx = null)
+        public static object ExecuteScalar(this NpgsqlConnection conn, string sql, NpgsqlTransaction tx = null)
         {
             var cmd = tx == null ? new NpgsqlCommand(sql, conn) : new NpgsqlCommand(sql, conn, tx);
             using (cmd)
                 return cmd.ExecuteScalar();
         }
 
-        public static async Task<int> ExecuteNonQueryAsync(this NpgsqlConnection conn, string sql, NpgsqlTransaction? tx = null)
+        public static async Task<int> ExecuteNonQueryAsync(this NpgsqlConnection conn, string sql, NpgsqlTransaction tx = null)
         {
             var cmd = tx == null ? new NpgsqlCommand(sql, conn) : new NpgsqlCommand(sql, conn, tx);
             using (cmd)
@@ -144,7 +145,7 @@ namespace Npgsql.Tests
         }
 
         [CanBeNull]
-        public static async Task<object> ExecuteScalarAsync(this NpgsqlConnection conn, string sql, NpgsqlTransaction? tx = null)
+        public static async Task<object> ExecuteScalarAsync(this NpgsqlConnection conn, string sql, NpgsqlTransaction tx = null)
         {
             var cmd = tx == null ? new NpgsqlCommand(sql, conn) : new NpgsqlCommand(sql, conn, tx);
             using (cmd)
@@ -154,7 +155,7 @@ namespace Npgsql.Tests
 
     public static class NpgsqlCommandExtensions
     {
-        public static T? ExecuteScalar<T>(this NpgsqlCommand cmd)
+        public static T ExecuteScalar<T>(this NpgsqlCommand cmd)
         {
             using (var rdr = cmd.ExecuteReader())
                 return rdr.Read() ? rdr.GetFieldValue<T>(0) : default;
@@ -179,18 +180,24 @@ namespace Npgsql.Tests
     /// test reproduces the issue)
     /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    public class IssueLink(string linkAddress) : Attribute
+    public class IssueLink : Attribute
     {
-        public string LinkAddress { get; private set; } = linkAddress;
+        public string LinkAddress { get; private set; }
+        public IssueLink(string linkAddress)
+        {
+            LinkAddress = linkAddress;
+        }
     }
 
     /// <summary>
     /// Causes the test to be ignored on mono
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Assembly, AllowMultiple = false)]
-    public class MonoIgnore(string? ignoreText = null) : Attribute, ITestAction
+    public class MonoIgnore : Attribute, ITestAction
     {
-        readonly string _ignoreText = ignoreText;
+        readonly string _ignoreText;
+
+        public MonoIgnore(string ignoreText = null) { _ignoreText = ignoreText; }
 
         public void BeforeTest([NotNull] ITest test)
         {
@@ -211,9 +218,11 @@ namespace Npgsql.Tests
     /// Causes the test to be ignored on Linux
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Assembly, AllowMultiple = false)]
-    public class LinuxIgnore(string? ignoreText = null) : Attribute, ITestAction
+    public class LinuxIgnore : Attribute, ITestAction
     {
-        readonly string _ignoreText = ignoreText;
+        readonly string _ignoreText;
+
+        public LinuxIgnore(string ignoreText = null) { _ignoreText = ignoreText; }
 
         public void BeforeTest([NotNull] ITest test)
         {
@@ -235,9 +244,11 @@ namespace Npgsql.Tests
     /// Causes the test to be ignored on Windows
     /// </summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Assembly, AllowMultiple = false)]
-    public class WindowsIgnore(string? ignoreText = null) : Attribute, ITestAction
+    public class WindowsIgnore : Attribute, ITestAction
     {
-        readonly string _ignoreText = ignoreText;
+        readonly string _ignoreText;
+
+        public WindowsIgnore(string ignoreText = null) { _ignoreText = ignoreText; }
 
         public void BeforeTest([NotNull] ITest test)
         {
