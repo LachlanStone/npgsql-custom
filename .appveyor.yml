@@ -15,6 +15,7 @@ cache:
   - $(POSTGIS_EXE)
 clone_depth: 10
 install:
+  - powershell .build\install_postgres10.ps1
   - powershell .build\setup_appveyor.ps1
 services:
   - postgresql101
